@@ -30,7 +30,7 @@ To design and implement a relational database that efficiently handles:
 
 The entire supply chain is divided into three major stages: **Suppliers → Manufacturers → Dealers**. Here's a visual breakdown:
 
-![Supply Chain Diagram](./0d6d9e45-cbbc-4691-90e3-8fa09e9222a6.png)
+![Supply Chain Diagram](https://raw.githubusercontent.com/ayushijani/Supply-Chain-Management/main/Assets/Screenshot%202025-06-18%20121523.png)
 
 1. **Suppliers** are classified into three types:
    - **Raw-material Suppliers**: Provide materials like steel, rubber, plastic, etc.
