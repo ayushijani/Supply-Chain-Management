@@ -1,0 +1,1205 @@
+SET SEARCH_PATH TO 'SUPPLY_CHAIN_MANAGEMENT';
+--1
+INSERT INTO SUPPLIER (SUPPLIER_ID, SUPPLIER_NAME, EMAIL_ID, SUPPLIER_TYPE, COUNTRY, STATE, CITY, CONTACT_NO) 
+VALUES 
+('S01', 'Chauhan Enterprises', 'chauhan@gmail.com', 'R', 'India', 'Uttar Pradesh', 'Lucknow', '9596978990'),
+('S02', 'Jani Traders', 'jani@gmail.com', 'C', 'India', 'Maharashtra', 'Mumbai', '9765342567'),
+('S03', 'Global Imports', 'globalimports@gmail.com', 'R', 'India', 'Delhi', 'New Delhi', '9087451234'),
+('S04', 'Dynamic Distributors', 'dynamic@gmail.com', 'R', 'India', 'West Bengal', 'Kolkata', '9123456789'),
+('S05', 'Lnt Suppliers', 'lnt@gmail.com', 'C', 'United States', 'New York', 'New York City', '5678901234'),
+('S06', 'EuroTrade', 'eurotrade@gmail.com', 'C', 'Germany', 'Berlin', 'Berlin', '6789012345'),
+('S07', 'Pacific Traders', 'pacific@gmail.com', 'C', 'Australia', 'South Wales', 'Sydney', '7890123456'),
+('S08', 'Asia Exports', 'asiaexports@gmail.com', 'C', 'China', 'Shanghai', 'Shanghai', '8901234567'),
+('S09', 'Canada Connections', 'canada@gmail.com', 'C', 'Canada', 'Ontario', 'Toronto', '9012345678'),
+('S10', 'South American Imports', 'southamerica@gmail.com', 'C', 'Brazil', 'Sao Paulo', 'Sao Paulo', '7123456789'),
+('S11', 'Indian Suppliers Inc.', 'indiansupply@gmail.com', 'C', 'India', 'Gujarat', 'Ahmedabad', '9425178689'),
+('S12', 'Bhanderi Trading Co.', 'bhanderi@gmail.com', 'C', 'India', 'Tamil Nadu', 'Chennai', '9278096090'),
+('S13', 'Delhi Enterprises', 'delhi@gmail.com', 'C', 'India', 'Delhi', 'New Delhi', '9562891080'),
+('S14', 'Bansi Traders', 'bansitraders@gmail.com', 'C', 'India', 'Punjab', 'Amritsar', '9142567009'),
+('S15', 'Rajasthan Exports', 'rajasthan@gmail.com', 'C', 'India', 'Rajasthan', 'Jaipur', '9015240904');
+
+
+
+--2
+INSERT INTO PARTS (PART_ID, PART_NAME, UNIT_PRICE) 
+VALUES 
+('RP01', 'Steel' , 75.00),
+('RP02', 'Aluminium' , 150.00),
+('RP03', 'Rubber' , 120.00),
+('RP04', 'Glass' , 200.00),
+('RP05','Lather',100.00),
+('CP01', 'Air Filters', 300.00),
+('CP02', 'Brake Pads', 300.00),
+('CP03', 'Tires', 1000.00),
+('CP04','engine',70000.00),
+('CP05', 'Spark Plugs', 100.00),
+('CP06', 'Car Seats', 7000.00),
+('CP07', 'Steering Wheel', 180.00),
+('CP08', 'Headlights', 800.00),
+('CP09', 'Door Handles', 400.00),
+('CP10', 'Starter Motors', 1500.00),
+('CP11', 'Oil Filters', 250.00),
+('CP12', 'Fuel Injectors', 120.00),
+('CP13', 'Windshield Wipers', 250.00),
+('CP14', 'Tail Lights', 700.00),
+('CP15', 'Exhaust Pipes', 150.00),
+('CP16', 'Radiator Hoses', 300.00),
+('CP17', 'Alternators', 200.00),
+('CP18', 'Serpentine Belts', 200.00),
+('CP19', 'Wheel Bearings', 500.00);
+ 
+
+
+--3
+INSERT INTO SUPPLIES_PARTS (SUPPLIER_ID, PART_ID, QUANTITY_STOCK) 
+VALUES 
+('S01', 'RP01', '100'),--STEEL
+('S01', 'RP02', '150'),--ALUMINIUM
+('S03', 'RP01', '200'),
+('S03', 'RP02', '120'),
+('S04', 'RP03', '130'),--RUBBER
+('S04', 'RP05', '80'),--LATHER
+('S09', 'RP04', '90'), -- GLASS
+('S02', 'CP02', '70'),--BREAKPAD
+('S05', 'CP02', '80'),--BREAKPAD
+('S02', 'CP03', '100'),--TIRES
+('S06', 'CP03', '120'),--TIRES
+('S05', 'CP03', '100'),--TIRES
+('S08', 'CP04', '200'), --ENGINE
+('S10', 'CP04', '150'), --ENGINE
+('S10', 'CP05', '100'),--SPARK PLUGS
+('S07','CP06','200'), --CAR SEATS
+('S11', 'CP07', '120'),--STEERING WHEEL
+('S11', 'CP09', '180'),--DOOR HANDLES
+('S11', 'CP19', '90'),--WHEEL BEARING
+('S12', 'CP08', '70'),--HEADLIGHTS
+('S12', 'CP14', '100'),--TAIL LIGHTS
+('S15', 'CP13', '110'),--WIPER
+('S15', 'CP18', '100'),--BELTS
+('S13', 'CP10', '130'),--STARTER MOTORS
+('S13','CP12','200'),--FUEL INJECTORS
+('S13','CP11',150),--OIL FILTERS
+('S14','CP15','150'),--EXHUAST PIPES
+('S14','CP16','130'),--RADIATOR HOSES
+('S14','CP17','130');--ALTERNATORS
+ 
+
+
+--4
+INSERT INTO ORDERS_OF_SUPPLIER (ORDERING_SUPPLIER, PROVIDING_SUPPLIER, ORDERED_PART_ID, SUPPLIER_ORDER_NO, QTY , AMOUNT) 
+VALUES 
+('S02', 'S01', 'RP01', 1001, 50, 2000.00),
+('S02', 'S04', 'RP03', 1002, 100, 1800.00),
+('S05', 'S04', 'RP03', 1003, 90,3000.00),
+('S06', 'S04', 'RP03', 1004, 60, 1000.00),
+('S07', 'S04', 'RP05', 1005, 50, 1500.00),
+('S08', 'S03', 'RP01', 1006, 100, 2500.00),
+('S08', 'S03', 'RP02', 1006, 70, 2200.00),
+('S10', 'S01', 'RP01', 1007, 100, 3500.00),
+('S10', 'S01', 'RP02', 1007, 80, 2000.00),
+('S05', 'S03', 'RP01', 1008, 50, 1800.00),
+('S07', 'S04', 'RP05', 1009, 50, 3000.00),
+('S08', 'S10', 'CP05', 1010, 20, 1000.00),
+('S11', 'S01', 'RP01', 1011, 50, 1500.00),
+('S11', 'S04', 'RP05', 1012, 70, 2500.00),
+('S12', 'S09', 'RP04', 1013, 100, 2200.00),
+('S02', 'S11', 'CP19', 1014, 100, 2200.00),
+('S05', 'S11', 'CP19', 1015, 100, 2200.00),
+('S06', 'S11', 'CP19', 1016, 100, 2200.00);
+
+
+
+--5
+INSERT INTO MANUFACTURER (M_ID, M_NAME, CONTACT_NO, EMAIL_ID, COUNTRY, STATE, CITY) 
+VALUES 
+('M01', 'Accelero Motors', '9675834510', 'info@acceleromotors.com', 'India', 'Gujarat', 'Ahmedabad');
+
+--6 
+INSERT INTO ORDER_OF_MANUFACTURER (ORDER_NO, M_ID, PLACING_DATE, RECEIVING_DATE) 
+VALUES 
+('ORD0', 'M01', '2022-03-05', '2022-03-07'),
+('ORD1', 'M01', '2022-03-08', '2022-03-11'),
+('ORD2', 'M01', '2022-03-11', '2022-03-14'),
+('ORD3', 'M01', '2022-03-13', '2022-03-17'),
+('ORD4', 'M01', '2022-03-15', '2022-03-17'),
+('ORD5', 'M01', '2022-03-18', '2022-03-21'),
+('ORD6', 'M01', '2022-03-20', '2022-03-22'),
+('ORD7', 'M01', '2022-03-22', '2022-03-25'),
+('ORD8', 'M01', '2022-03-25', '2022-03-27'),
+('ORD9', 'M01', '2022-03-27', '2022-03-29'),
+('ORD10', 'M01', '2022-03-28', '2022-03-30'),
+
+('ORD11', 'M01', '2022-03-02', '2023-03-06'),
+('ORD12', 'M01', '2022-03-07', '2022-03-09'),
+('ORD13', 'M01', '2022-03-10', '2022-03-15'),
+('ORD14', 'M01', '2022-03-15', '2022-03-17'),
+('ORD15', 'M01', '2022-03-16', '2022-03-18'),
+('ORD16', 'M01', '2022-03-21', '2022-03-24'),
+('ORD17', 'M01', '2022-03-22', '2022-03-25'),
+('ORD18', 'M01', '2022-03-25', '2022-03-28'),
+('ORD19', 'M01', '2022-03-30', '2022-04-01'),
+('ORD20', 'M01', '2022-03-31', '2022-04-02'),
+
+('ORD21', 'M01', '2022-04-01', '2022-04-04'),
+('ORD22', 'M01', '2022-04-05', '2022-04-07'),
+('ORD23', 'M01', '2022-04-08', '2022-04-10'),
+('ORD24', 'M01', '2022-04-11', '2022-04-14'),
+('ORD25', 'M01', '2022-04-12', '2022-04-15'),
+('ORD26', 'M01', '2022-04-15', '2022-04-17'),
+('ORD27', 'M01', '2022-04-20', '2022-04-22'),
+('ORD28', 'M01', '2022-04-25', '2022-04-28'),
+('ORD29', 'M01', '2022-04-30', '2022-05-01'),
+('ORD30', 'M01', '2022-04-30', '2022-05-02'),
+
+('ORD31', 'M01', '2022-04-01', '2022-04-03'),
+('ORD32', 'M01', '2022-04-02', '2022-04-05'),
+('ORD33', 'M01', '2022-04-05', '2022-04-07'),
+('ORD34', 'M01', '2022-04-07', '2022-04-09'),
+('ORD35', 'M01', '2022-04-07', '2022-04-10'),
+('ORD36', 'M01', '2022-04-11', '2022-04-15'),
+('ORD37', 'M01', '2022-04-15', '2022-04-16'),
+('ORD38', 'M01', '2022-04-19', '2022-04-25'),
+('ORD39', 'M01', '2022-04-20', '2022-04-25'),
+('ORD40', 'M01', '2022-04-25', '2022-04-29'),
+
+('ORD41', 'M01', '2023-03-02', '2023-03-04'),
+('ORD42', 'M01', '2023-03-05', '2023-03-07'),
+('ORD43', 'M01', '2023-03-10', '2023-03-14'),
+('ORD44', 'M01', '2023-03-15', '2023-03-19'),
+('ORD45', 'M01', '2023-03-20', '2023-03-22'),
+('ORD46', 'M01', '2023-03-25', '2023-03-28'),
+('ORD47', 'M01', '2023-03-25', '2023-03-27'),
+('ORD48', 'M01', '2023-03-26', '2023-03-29'),
+('ORD49', 'M01', '2023-03-27', '2023-03-30'),
+('ORD50', 'M01', '2023-03-29', '2023-03-30'),
+
+('ORD51', 'M01', '2023-04-01', '2023-04-03'),
+('ORD52', 'M01', '2023-04-02', '2023-04-04'),
+('ORD53', 'M01', '2023-04-07', '2023-04-09'),
+('ORD54', 'M01', '2023-04-08', '2023-04-13'),
+('ORD55', 'M01', '2023-04-10', '2023-04-14'),
+('ORD56', 'M01', '2023-04-15', '2023-04-17'),
+('ORD57', 'M01', '2023-04-17', '2023-04-19'),
+('ORD58', 'M01', '2023-04-18', '2023-04-21'),
+('ORD59', 'M01', '2023-04-18', '2023-04-22'),
+('ORD60', 'M01', '2023-04-25', '2023-04-27'),
+('ORD61', 'M01', '2023-04-28', '2023-04-30');
+
+
+
+--7
+INSERT INTO ORDER_FOR_PARTS (PART_ID, ORDER_NO, QUANTITY) 
+VALUES 
+('RP04', 'ORD0', '1000'),
+('RP01', 'ORD1', '3500'),
+('RP02', 'ORD1', '700'),
+('CP01', 'ORD2', '10'),
+('CP02', 'ORD3', '20'),
+('CP03', 'ORD3', '25'),
+('CP04', 'ORD4', '5'),
+('CP06', 'ORD5', '30'),
+('CP19', 'ORD6', '25'),
+('CP13', 'ORD6', '15'),
+('CP09', 'ORD7', '25'),
+('CP07', 'ORD7', '5'),
+('CP08', 'ORD8', '12'),
+('CP14', 'ORD8', '12'),
+('CP10', 'ORD9', '12'), --2 CAR MODEL
+('CP11', 'ORD9', '7'),
+('CP12', 'ORD9', '15'),
+('CP15', 'ORD10', '15'),
+('CP16', 'ORD10', '10'),
+('CP17', 'ORD10', '10'),
+('CP18', 'ORD10', '10'),
+
+('RP01', 'ORD11', '2500'),
+('RP02', 'ORD11', '1500'),
+('CP01', 'ORD12', '5'),
+('CP02', 'ORD13', '10'),
+('CP03', 'ORD14', '15'),
+('CP04', 'ORD15', '5'),
+('CP06', 'ORD16', '30'),
+('CP19', 'ORD17', '10'),
+('CP13', 'ORD17', '10'),
+('CP09', 'ORD18', '20'),
+('CP07', 'ORD18', '5'),
+('CP08', 'ORD19', '10'),
+('CP14', 'ORD19', '10'),
+('CP15', 'ORD20', '15'),--2 CAR MODEL
+('CP16', 'ORD20', '15'),
+('CP17', 'ORD20', '15'),
+('CP18', 'ORD20', '15'),
+
+('RP01', 'ORD21', '15,000'),
+('RP02', 'ORD21', '7,000'),
+('CP01', 'ORD22', '10'),
+('CP02', 'ORD23', '25'),
+('CP03', 'ORD24', '50'),
+('CP04', 'ORD25', '24'), --2 CAR MODEL
+('CP06', 'ORD26', '60'),
+('CP19', 'ORD27', '25'),
+('CP13', 'ORD27', '15'),
+('CP09', 'ORD28', '60'),
+('CP07', 'ORD28', '12'),
+('CP08', 'ORD29', '25'),
+('CP14', 'ORD29', '25'),
+('CP10', 'ORD30', '15'),
+('CP11', 'ORD30', '30'),
+('CP12', 'ORD30', '15'),
+
+('RP01', 'ORD31', '20,000'),
+('RP02', 'ORD31', '10,000'),
+('CP01', 'ORD32', '10'),
+('CP02', 'ORD33', '25'),
+('CP03', 'ORD33', '50'),
+('RP04', 'ORD34', '4000'),
+('CP06', 'ORD35', '60'),
+('CP19', 'ORD36', '25'),
+('CP13', 'ORD36', '15'),
+('CP09', 'ORD37', '60'),
+('CP07', 'ORD37', '12'),
+('CP08', 'ORD38', '25'),
+('CP14', 'ORD38', '25'),
+('CP10', 'ORD39', '30'),--2 CAR MODEL
+('CP11', 'ORD39', '60'),
+('CP12', 'ORD39', '30'),
+('CP15', 'ORD40', '50'),
+('CP16', 'ORD40', '50'),
+('CP17', 'ORD40', '30'),
+('CP18', 'ORD40', '30'),
+
+('RP01', 'ORD41', '20,000'),
+('RP02', 'ORD42', '10,000'),
+('CP01', 'ORD43', '10'),
+('CP02', 'ORD44', '25'),
+('CP03', 'ORD44', '50'),
+('CP04', 'ORD45', '12'),
+('CP06', 'ORD46', '60'),
+('CP19', 'ORD47', '25'),
+('CP13', 'ORD47', '15'),
+('CP09', 'ORD48', '60'),
+('CP07', 'ORD48', '12'),
+('CP08', 'ORD49', '25'),
+('CP14', 'ORD49', '25'),
+('CP15', 'ORD50', '50'),
+('CP16', 'ORD50', '50'),
+('CP17', 'ORD50', '30'),
+('CP18', 'ORD50', '30'),
+
+('RP01', 'ORD51', '30,000'),
+('RP02', 'ORD51', '20,000'),
+('CP01', 'ORD52', '20'),
+('CP02', 'ORD53', '40'),
+('CP03', 'ORD53', '100'),
+('CP04', 'ORD54', '24'),
+('CP06', 'ORD55', '120'),
+('CP19', 'ORD56', '50'),
+('CP13', 'ORD56', '32'),
+('CP09', 'ORD57', '120'),
+('CP07', 'ORD57', '25'),
+('CP08', 'ORD58', '50'),
+('CP14', 'ORD58', '50'),
+('CP10', 'ORD59', '50'),
+('CP11', 'ORD59', '60'),
+('CP12', 'ORD59', '30'),
+('CP15', 'ORD60', '90'),
+('CP16', 'ORD60', '95'),
+('CP17', 'ORD60', '60'),
+('CP18', 'ORD60', '60'),
+('RP04', 'ORD61', '5000');
+ 
+
+
+--8
+INSERT INTO ORDER_TRANSACTIONS (TRANSACTION_ID, ORDER_NO, ORDERED_AMOUNT, TAX_NAME, TAX_IN_PERCENTAGE, TOTAL_AMOUNT) 
+VALUES 
+('TRANS000', 'ORD0', 26000.00, 'GST', 18.00, 30760.00),
+('TRANS001', 'ORD1', 26000.00, 'GST', 18.00, 30760.00),
+('TRANS002', 'ORD2', 27000.00, 'GST', 18.00, 31950.00),
+('TRANS003', 'ORD3', 28000.00, 'VAT', 15.00, 32200.00),
+('TRANS004', 'ORD4', 29000.00, 'GST', 18.00, 34320.00),
+('TRANS005', 'ORD5', 30000.00, 'GST', 18.00, 35700.00),
+('TRANS006', 'ORD6', 31000.00, 'VAT', 15.00, 35650.00),
+('TRANS007', 'ORD7', 32000.00, 'GST', 18.00, 37840.00),
+('TRANS008', 'ORD8', 33000.00, 'GST', 18.00, 39240.00),
+('TRANS009', 'ORD9', 34000.00, 'VAT', 15.00, 39100.00),
+('TRANS010', 'ORD10', 35000.00, 'GST', 18.00, 41320.00),
+('TRANS011', 'ORD11', 36000.00, 'GST', 18.00, 42720.00),
+('TRANS012', 'ORD12', 37000.00, 'VAT', 15.00, 42720.00),
+('TRANS013', 'ORD13', 38000.00, 'GST', 18.00, 44960.00),
+('TRANS014', 'ORD14', 39000.00, 'GST', 18.00, 46360.00),
+('TRANS015', 'ORD15', 40000.00, 'VAT', 15.00, 46350.00),
+('TRANS016', 'ORD16', 41000.00, 'GST', 18.00, 48600.00),
+('TRANS017', 'ORD17', 42000.00, 'GST', 18.00, 50020.00),
+('TRANS018', 'ORD18', 43000.00, 'VAT', 15.00, 49700.00),
+('TRANS019', 'ORD19', 44000.00, 'GST', 18.00, 52040.00),
+('TRANS020', 'ORD20', 45000.00, 'GST', 18.00, 53440.00),
+('TRANS021', 'ORD21', 25000.00, 'GST', 18.00, 29500.00),
+('TRANS022', 'ORD22', 26000.00, 'GST', 18.00, 30760.00),
+('TRANS023', 'ORD23', 27000.00, 'VAT', 15.00, 31050.00),
+('TRANS024', 'ORD24', 28000.00, 'GST', 18.00, 33120.00),
+('TRANS025', 'ORD25', 29000.00, 'GST', 18.00, 34320.00),
+('TRANS026', 'ORD26', 30000.00, 'VAT', 15.00, 34500.00),
+('TRANS027', 'ORD27', 31000.00, 'GST', 18.00, 36680.00),
+('TRANS028', 'ORD28', 32000.00, 'GST', 18.00, 37960.00),
+('TRANS029', 'ORD29', 33000.00, 'VAT', 15.00, 37950.00),
+('TRANS030', 'ORD30', 34000.00, 'GST', 18.00, 40120.00),
+('TRANS031', 'ORD31', 35000.00, 'GST', 18.00, 41400.00),
+('TRANS032', 'ORD32', 36000.00, 'VAT', 15.00, 41400.00),
+('TRANS033', 'ORD33', 37000.00, 'GST', 18.00, 43640.00),
+('TRANS034', 'ORD34', 38000.00, 'GST', 18.00, 45040.00),
+('TRANS035', 'ORD35', 39000.00, 'VAT', 15.00, 44850.00),
+('TRANS036', 'ORD36', 40000.00, 'GST', 18.00, 47200.00),
+('TRANS037', 'ORD37', 41000.00, 'GST', 18.00, 48620.00),
+('TRANS038', 'ORD38', 42000.00, 'VAT', 15.00, 48300.00),
+('TRANS039', 'ORD39', 43000.00, 'GST', 18.00, 50740.00),
+('TRANS040', 'ORD40', 44000.00, 'GST', 18.00, 52240.00),
+('TRANS041', 'ORD41', 45000.00, 'VAT', 15.00, 51750.00),
+('TRANS042', 'ORD42', 46000.00, 'GST', 18.00, 54560.00),
+('TRANS043', 'ORD43', 47000.00, 'GST', 18.00, 56140.00),
+('TRANS044', 'ORD44', 48000.00, 'VAT', 15.00, 55200.00),
+('TRANS045', 'ORD45', 49000.00, 'GST', 18.00, 57920.00),
+('TRANS046', 'ORD46', 50000.00, 'GST', 18.00, 59500.00),
+('TRANS047', 'ORD47', 51000.00, 'VAT', 15.00, 58650.00),
+('TRANS048', 'ORD48', 52000.00, 'GST', 18.00, 61280.00),
+('TRANS049', 'ORD49', 53000.00, 'GST', 18.00, 62940.00),
+('TRANS050', 'ORD50', 54000.00, 'VAT', 15.00, 62100.00),
+('TRANS051', 'ORD51', 55000.00, 'GST', 18.00, 64600.00),
+('TRANS052', 'ORD52', 56000.00, 'GST', 18.00, 66320.00),
+('TRANS053', 'ORD53', 57000.00, 'VAT', 15.00, 65550.00),
+('TRANS054', 'ORD54', 58000.00, 'GST', 18.00, 68240.00),
+('TRANS055', 'ORD55', 59000.00, 'GST', 18.00, 69980.00),
+('TRANS056', 'ORD56', 60000.00, 'VAT', 15.00, 69000.00),
+('TRANS057', 'ORD57', 61000.00, 'GST', 18.00, 71880.00),
+('TRANS058', 'ORD58', 62000.00, 'GST', 18.00, 73720.00),
+('TRANS059', 'ORD59', 63000.00, 'VAT', 15.00, 72450.00),
+('TRANS060', 'ORD60', 64000.00, 'GST', 18.00, 75680.00),
+('TRANS061', 'ORD61', 65000.00, 'GST', 18.00, 77520.00);
+
+
+
+--9
+INSERT INTO CAR_MODEL (CAR_MODEL_ID, MODEL_NAME, MILEAGE_IN_KMPL, COLOR, WARRANTY_DURATION_MONTHS) 
+VALUES 
+('CM1', 'Accelero Avant', 15.5, 'Racing Red', 36),
+('CM2', 'Accelero Avant', 15.5, 'Racing Black', 36),
+('CM3', 'Accelero Avant', 15.5, 'Racing Red', 36),
+('CM4', 'Accelero Avant', 15.5, 'Racing Blue', 36),
+('CM5', 'Accelero Avant', 15.5, 'Racing Red', 36),
+
+
+('CM01', 'Accelero Apex', 18.2, 'Midnight Blue', 36),
+('CM02', 'Accelero Apex', 18.2, 'Midnight Silver', 36),
+('CM03', 'Accelero Apex', 18.2, 'Midnight Black', 36),
+('CM04', 'Accelero Apex', 18.2, 'Midnight Blue', 36),
+
+
+('CM001', 'Accelero Luxor', 20.0, 'Obsidian Black', 48),
+('CM002', 'Accelero Luxor', 20.0, 'Obsidian Black',  48),
+('CM003', 'Accelero Luxor', 20.0, 'Obsidian Blue', 48),
+('CM004', 'Accelero Luxor', 20.0, 'Obsidian Black', 48),
+('CM005', 'Accelero Luxor', 20.0, 'Obsidian Red', 48),
+
+
+('CM0001', 'Accelero Urbanite', 17.8, 'Silver Metallic', 24),
+('CM0002', 'Accelero Urbanite', 17.8, 'Silver Metallic', 24),
+('CM0003', 'Accelero Urbanite', 17.8, 'Platinum Metallic', 24),
+('CM0004', 'Accelero Urbanite', 17.8, 'Magnetic Metallic',  24),
+('CM0005', 'Accelero Urbanite', 17.8, 'Silver Metallic', 24),
+
+('CM00001', 'Accelero Aurora', 19.5, 'Glacier White', 36),
+('CM00002', 'Accelero Aurora', 19.5, 'Glacier White', 36),
+('CM00003', 'Accelero Aurora', 19.5, 'Glacier Silver', 36),
+('CM00004', 'Accelero Aurora', 19.5, 'Glacier Black', 36),
+('CM00005', 'Accelero Aurora', 19.5, 'Glacier White',36),
+
+
+
+('CM000001', 'Accelero Voyager', 16.9, 'Graphite Gray',24),
+('CM000002', 'Accelero Voyager', 16.9, 'Graphite Gray',24),
+('CM000003', 'Accelero Voyager', 16.9, 'Graphite Black',24),
+('CM000004', 'Accelero Voyager', 16.9, 'Graphite Gray',24),
+('CM000005', 'Accelero Voyager', 16.9, 'Graphite Gray',24);
+
+
+
+--10
+INSERT INTO ORDER_BASED_ON (ORDER_NO, CAR_MODEL_ID) 
+VALUES 
+('ORD0','CM1'),
+('ORD0','CM2'),
+('ORD0','CM3'),
+('ORD0','CM4'),
+('ORD0','CM5'),
+('ORD0','CM01'),
+('ORD0','CM02'),
+('ORD0','CM03'),
+('ORD0','CM04'),
+('ORD0','CM001'),
+('ORD0','CM002'),
+('ORD0','CM003'),
+('ORD0','CM004'),
+('ORD0','CM005'),
+('ORD1', 'CM1'),
+('ORD1', 'CM2'),
+('ORD1', 'CM3'),
+('ORD1', 'CM4'),
+('ORD1', 'CM5'),
+('ORD2', 'CM1'),
+('ORD2', 'CM2'),
+('ORD2', 'CM3'),
+('ORD2', 'CM4'),
+('ORD2', 'CM5'),
+
+('ORD3', 'CM1'),
+('ORD3', 'CM2'),
+('ORD3', 'CM3'),
+('ORD3', 'CM4'),
+('ORD3', 'CM5'),
+
+('ORD4', 'CM1'),
+('ORD4', 'CM2'),
+('ORD4', 'CM3'),
+('ORD4', 'CM4'),
+('ORD4', 'CM5'),
+
+('ORD5', 'CM1'),
+('ORD5', 'CM2'),
+('ORD5', 'CM3'),
+('ORD5', 'CM4'),
+('ORD5', 'CM5'),
+
+('ORD6', 'CM1'),
+('ORD6', 'CM2'),
+('ORD6', 'CM3'),
+('ORD6', 'CM4'),
+('ORD6', 'CM5'),
+
+('ORD7', 'CM1'),
+('ORD7', 'CM2'),
+('ORD7', 'CM3'),
+('ORD7', 'CM4'),
+('ORD7', 'CM5'),
+
+('ORD8', 'CM1'),
+('ORD8', 'CM2'),
+('ORD8', 'CM3'),
+('ORD8', 'CM4'),
+('ORD8', 'CM5'),
+
+('ORD9', 'CM1'),
+('ORD9', 'CM2'),
+('ORD9', 'CM3'),
+('ORD9', 'CM4'),
+('ORD9', 'CM5'),
+('ORD9', 'CM01'),
+('ORD9', 'CM02'),
+('ORD9', 'CM03'),
+('ORD9', 'CM04'),
+
+('ORD10', 'CM1'),
+('ORD10', 'CM2'),
+('ORD10', 'CM3'),
+('ORD10', 'CM4'),
+('ORD10', 'CM5'),
+
+('ORD11', 'CM01'),
+('ORD11', 'CM02'),
+('ORD11', 'CM03'),
+('ORD11', 'CM04'),
+
+('ORD12', 'CM01'),
+('ORD12', 'CM02'),
+('ORD12', 'CM03'),
+('ORD12', 'CM04'),
+
+('ORD13', 'CM01'),
+('ORD13', 'CM02'),
+('ORD13', 'CM03'),
+('ORD13', 'CM04'),
+
+('ORD14', 'CM01'),
+('ORD14', 'CM02'),
+('ORD14', 'CM03'),
+('ORD14', 'CM04'),
+
+('ORD15', 'CM01'),
+('ORD15', 'CM02'),
+('ORD15', 'CM03'),
+('ORD15', 'CM04'),
+
+('ORD16', 'CM01'),
+('ORD16', 'CM02'),
+('ORD16', 'CM03'),
+('ORD16', 'CM04'),
+
+('ORD17', 'CM01'),
+('ORD17', 'CM02'),
+('ORD17', 'CM03'),
+('ORD17', 'CM04'),
+
+('ORD18', 'CM01'),
+('ORD18', 'CM02'),
+('ORD18', 'CM03'),
+('ORD18', 'CM04'),
+
+('ORD19', 'CM01'),
+('ORD19', 'CM02'),
+('ORD19', 'CM03'),
+('ORD19', 'CM04'),
+
+('ORD20', 'CM01'),
+('ORD20', 'CM02'),
+('ORD20', 'CM03'),
+('ORD20', 'CM04'),
+
+
+('ORD20', 'CM001'),
+('ORD20', 'CM002'),
+('ORD20', 'CM003'),
+('ORD20', 'CM004'),
+('ORD20', 'CM005'),
+
+('ORD21', 'CM001'),
+('ORD21', 'CM002'),
+('ORD21', 'CM003'),
+('ORD21', 'CM004'),
+('ORD21', 'CM005'),
+
+('ORD22', 'CM001'),
+('ORD22', 'CM002'),
+('ORD22', 'CM003'),
+('ORD22', 'CM004'),
+('ORD22', 'CM005'),
+
+('ORD23', 'CM001'),
+('ORD23', 'CM002'),
+('ORD23', 'CM003'),
+('ORD23', 'CM004'),
+('ORD23', 'CM005'),
+
+('ORD24', 'CM001'),
+('ORD24', 'CM002'),
+('ORD24', 'CM003'),
+('ORD24', 'CM004'),
+('ORD24', 'CM005'),
+
+('ORD24', 'CM0001'),
+('ORD24', 'CM0002'),
+('ORD24', 'CM0003'),
+('ORD24', 'CM0004'),
+('ORD24', 'CM0005'),
+
+('ORD25', 'CM001'),
+('ORD25', 'CM002'),
+('ORD25', 'CM003'),
+('ORD25', 'CM004'),
+('ORD25', 'CM005'),
+
+('ORD26', 'CM001'),
+('ORD26', 'CM002'),
+('ORD26', 'CM003'),
+('ORD26', 'CM004'),
+('ORD26', 'CM005'),
+
+('ORD27', 'CM001'),
+('ORD27', 'CM002'),
+('ORD27', 'CM003'),
+('ORD27', 'CM004'),
+('ORD27', 'CM005'),
+
+('ORD28', 'CM001'),
+('ORD28', 'CM002'),
+('ORD28', 'CM003'),
+('ORD28', 'CM004'),
+('ORD28', 'CM005'),
+
+('ORD29', 'CM001'),
+('ORD29', 'CM002'),
+('ORD29', 'CM003'),
+('ORD29', 'CM004'),
+('ORD29', 'CM005'),
+
+('ORD30', 'CM001'),
+('ORD30', 'CM002'),
+('ORD30', 'CM003'),
+('ORD30', 'CM004'),
+('ORD30', 'CM005'),
+
+('ORD31', 'CM0001'),
+('ORD31', 'CM0002'),
+('ORD31', 'CM0003'),
+('ORD31', 'CM0004'),
+('ORD31', 'CM0005'),
+
+('ORD32', 'CM0001'),
+('ORD32', 'CM0002'),
+('ORD32', 'CM0003'),
+('ORD32', 'CM0004'),
+('ORD32', 'CM0005'),
+
+('ORD33', 'CM0001'),
+('ORD33', 'CM0002'),
+('ORD33', 'CM0003'),
+('ORD33', 'CM0004'),
+('ORD33', 'CM0005'),
+
+('ORD34', 'CM0001'),
+('ORD34', 'CM0002'),
+('ORD34', 'CM0003'),
+('ORD34', 'CM0004'),
+('ORD34', 'CM0005'),
+
+('ORD35', 'CM0001'),
+('ORD35', 'CM0002'),
+('ORD35', 'CM0003'),
+('ORD35', 'CM0004'),
+('ORD35', 'CM0005'),
+
+('ORD36', 'CM0001'),
+('ORD36', 'CM0002'),
+('ORD36', 'CM0003'),
+('ORD36', 'CM0004'),
+('ORD36', 'CM0005'),
+
+('ORD37', 'CM0001'),
+('ORD37', 'CM0002'),
+('ORD37', 'CM0003'),
+('ORD37', 'CM0004'),
+('ORD37', 'CM0005'),
+
+('ORD38', 'CM0001'),
+('ORD38', 'CM0002'),
+('ORD38', 'CM0003'),
+('ORD38', 'CM0004'),
+('ORD38', 'CM0005'),
+
+('ORD39', 'CM0001'),
+('ORD39', 'CM0002'),
+('ORD39', 'CM0003'),
+('ORD39', 'CM0004'),
+('ORD39', 'CM0005'),
+
+('ORD40', 'CM0001'),
+('ORD40', 'CM0002'),
+('ORD40', 'CM0003'),
+('ORD40', 'CM0004'),
+('ORD40', 'CM0005'),
+
+('ORD41', 'CM00001'),
+('ORD41', 'CM00002'),
+('ORD41', 'CM00003'),
+('ORD41', 'CM00004'),
+('ORD41', 'CM00005'),
+
+('ORD42', 'CM00001'),
+('ORD42', 'CM00002'),
+('ORD42', 'CM00003'),
+('ORD42', 'CM00004'),
+('ORD42', 'CM00005'),
+
+('ORD43', 'CM00001'),
+('ORD43', 'CM00002'),
+('ORD43', 'CM00003'),
+('ORD43', 'CM00004'),
+('ORD43', 'CM00005'),
+
+('ORD44', 'CM00001'),
+('ORD44', 'CM00002'),
+('ORD44', 'CM00003'),
+('ORD44', 'CM00004'),
+('ORD44', 'CM00005'),
+
+('ORD45', 'CM00001'),
+('ORD45', 'CM00002'),
+('ORD45', 'CM00003'),
+('ORD45', 'CM00004'),
+('ORD45', 'CM00005'),
+
+('ORD46', 'CM00001'),
+('ORD46', 'CM00002'),
+('ORD46', 'CM00003'),
+('ORD46', 'CM00004'),
+('ORD46', 'CM00005'),
+
+('ORD47', 'CM00001'),
+('ORD47', 'CM00002'),
+('ORD47', 'CM00003'),
+('ORD47', 'CM00004'),
+('ORD47', 'CM00005'),
+
+('ORD48', 'CM00001'),
+('ORD48', 'CM00002'),
+('ORD48', 'CM00003'),
+('ORD48', 'CM00004'),
+('ORD48', 'CM00005'),
+
+('ORD49', 'CM00001'),
+('ORD49', 'CM00002'),
+('ORD49', 'CM00003'),
+('ORD49', 'CM00004'),
+('ORD49', 'CM00005'),
+
+('ORD50', 'CM00001'),
+('ORD50', 'CM00002'),
+('ORD50', 'CM00003'),
+('ORD50', 'CM00004'),
+('ORD50', 'CM00005'),
+
+('ORD51', 'CM000001'),
+('ORD51', 'CM000002'),
+('ORD51', 'CM000003'),
+('ORD51', 'CM000004'),
+('ORD51', 'CM000005'),
+
+('ORD52', 'CM000001'),
+('ORD52', 'CM000002'),
+('ORD52', 'CM000003'),
+('ORD52', 'CM000004'),
+('ORD52', 'CM000005'),
+
+('ORD53', 'CM000001'),
+('ORD53', 'CM000002'),
+('ORD53', 'CM000003'),
+('ORD53', 'CM000004'),
+('ORD53', 'CM000005'),
+
+('ORD54', 'CM000001'),
+('ORD54', 'CM000002'),
+('ORD54', 'CM000003'),
+('ORD54', 'CM000004'),
+('ORD54', 'CM000005'),
+
+('ORD55', 'CM000001'),
+('ORD55', 'CM000002'),
+('ORD55', 'CM000003'),
+('ORD55', 'CM000004'),
+('ORD55', 'CM000005'),
+
+('ORD56', 'CM000001'),
+('ORD56', 'CM000002'),
+('ORD56', 'CM000003'),
+('ORD56', 'CM000004'),
+('ORD56', 'CM000005'),
+
+('ORD57', 'CM000001'),
+('ORD57', 'CM000002'),
+('ORD57', 'CM000003'),
+('ORD57', 'CM000004'),
+('ORD57', 'CM000005'),
+
+('ORD58', 'CM000001'),
+('ORD58', 'CM000002'),
+('ORD58', 'CM000003'),
+('ORD58', 'CM000004'),
+('ORD58', 'CM000005'),
+
+('ORD59', 'CM000001'),
+('ORD59', 'CM000002'),
+('ORD59', 'CM000003'),
+('ORD59', 'CM000004'),
+('ORD59', 'CM000005'),
+
+('ORD60', 'CM000001'),
+('ORD60', 'CM000002'),
+('ORD60', 'CM000003'),
+('ORD60', 'CM000004'),
+('ORD60', 'CM000005'),
+
+('ORD61', 'CM000001'),
+('ORD61', 'CM000002'),
+('ORD61', 'CM000003'),
+('ORD61', 'CM000004'),
+('ORD61', 'CM000005'),
+
+('ORD61', 'CM00001'),
+('ORD61', 'CM00002'),
+('ORD61', 'CM00003'),
+('ORD61', 'CM00004'),
+('ORD61', 'CM00005');
+
+  
+
+--11
+INSERT INTO ASSEMBLY_PLANT (PLANT_NO, M_ID, COUNTRY, STATE, CITY) 
+VALUES
+('PN01', 'M01', 'India', 'Delhi', 'New Delhi'),
+('PN02', 'M01', 'India', 'Tamil Nadu', 'Chennai'),
+('PN03', 'M01', 'India', 'Rajasthan', 'Jaipur'),
+('PN04', 'M01', 'India', 'Gujarat', 'Ahmedabad');
+
+--12
+INSERT INTO PLANT_HEAD (PHEAD_ID, H_NAME, PLANT_NO, CONTACT_NO) VALUES
+('PH01', 'Siddharth Gupta', 'PN01', '9990002221'),
+('PH02', 'Subramaniam', 'PN02', '9736562421'),
+('PH03', 'Manan Pareek', 'PN03', '7234340911'),
+('PH04', 'Ramesh Patel', 'PN04', '7600011121');
+
+--13
+INSERT INTO MANUFACTURED_PARTS_BY_OWN (COMPONENT_ID, COMPONENT_NAME, CAR_MODEL_ID, M_ID, UNIT_PRICE, QUALITY_FACTORS) 
+VALUES 
+('CP1', 'Frame', 'CM1', 'M01', 2500.00, 'Durability'),
+('CP2', 'Chasis', 'CM1', 'M01', 1500.00, 'Reliability'),
+('CP3', 'Frame', 'CM2', 'M01', 2500.00, 'Durability'),
+('CP4', 'Chasis', 'CM2', 'M01', 1500.00, 'Reliability'),
+('CP5', 'Frame', 'CM3', 'M01', 2500.00, 'Durability'),
+('CP6', 'Chasis', 'CM3', 'M01', 1500.00, 'Reliability'),
+('CP7', 'Frame', 'CM4', 'M01', 2500.00, 'Durability'),
+('CP8', 'Chasis', 'CM4', 'M01', 1500.00, 'Reliability'),
+('CP9', 'Frame', 'CM5', 'M01', 2500.00, 'Durability'),
+('CP10', 'Chasis', 'CM5', 'M01', 1500.00, 'Reliability'),
+
+
+('CP01', 'Frame', 'CM01', 'M01', 2500.00, 'Durability'),
+('CP02', 'Chasis', 'CM01', 'M01', 1500.00, 'Reliability'),
+('CP03', 'Frame', 'CM02', 'M01', 2500.00, 'Durability'),
+('CP04', 'Chasis', 'CM02', 'M01', 1500.00, 'Reliability'),
+('CP05', 'Frame', 'CM03', 'M01', 2500.00, 'Durability'),
+('CP06', 'Chasis', 'CM03', 'M01', 1500.00, 'Reliability'),
+('CP07', 'Frame', 'CM04', 'M01', 2500.00, 'Durability'),
+('CP08', 'Chasis', 'CM04', 'M01', 1500.00, 'Reliability'),
+
+
+('CP001', 'Frame', 'CM001', 'M01', 2500.00, 'Durability'),
+('CP002', 'Chasis', 'CM001', 'M01', 1500.00, 'Reliability'),
+('CP003', 'Frame', 'CM002', 'M01', 2500.00, 'Durability'),
+('CP004', 'Chasis', 'CM002', 'M01', 1500.00, 'Reliability'),
+('CP005', 'Frame', 'CM003', 'M01', 2500.00, 'Durability'),
+('CP006', 'Chasis', 'CM003', 'M01', 1500.00, 'Reliability'),
+('CP007', 'Frame', 'CM004', 'M01', 2500.00, 'Durability'),
+('CP008', 'Chasis', 'CM004', 'M01', 1500.00, 'Reliability'),
+('CP009', 'Frame', 'CM005', 'M01', 2500.00, 'Durability'),
+('CP0010', 'Chasis', 'CM005', 'M01', 1500.00, 'Reliability'),
+
+('CP0001', 'Frame', 'CM0001', 'M01', 2500.00, 'Durability'),
+('CP0002', 'Chasis', 'CM0001', 'M01', 1500.00, 'Reliability'),
+('CP0003', 'Frame', 'CM0002', 'M01', 2500.00, 'Durability'),
+('CP0004', 'Chasis', 'CM0002', 'M01', 1500.00, 'Reliability'),
+('CP0005', 'Frame', 'CM0003', 'M01', 2500.00, 'Durability'),
+('CP0006', 'Chasis', 'CM0003', 'M01', 1500.00, 'Reliability'),
+('CP0007', 'Frame', 'CM0004', 'M01', 2500.00, 'Durability'),
+('CP0008', 'Chasis', 'CM0004', 'M01', 1500.00, 'Reliability'),
+('CP0009', 'Frame', 'CM0005', 'M01', 2500.00, 'Durability'),
+('CP00010', 'Chasis', 'CM0005', 'M01', 1500.00, 'Reliability'),
+
+('CP00001', 'Frame', 'CM00001', 'M01', 2500.00, 'Durability'),
+('CP00002', 'Chasis', 'CM00001', 'M01', 1500.00, 'Reliability'),
+('CP00003', 'Frame', 'CM00002', 'M01', 2500.00, 'Durability'),
+('CP00004', 'Chasis', 'CM00002', 'M01', 1500.00, 'Reliability'),
+('CP00005', 'Frame', 'CM00003', 'M01', 2500.00, 'Durability'),
+('CP00006', 'Chasis', 'CM00003', 'M01', 1500.00, 'Reliability'),
+('CP00007', 'Frame', 'CM00004', 'M01', 2500.00, 'Durability'),
+('CP00008', 'Chasis', 'CM00004', 'M01', 1500.00, 'Reliability'),
+('CP00009', 'Frame', 'CM00005', 'M01', 2500.00, 'Durability'),
+('CP000010', 'Chasis', 'CM00005', 'M01', 1500.00, 'Reliability'),
+
+('CP000001', 'Frame', 'CM000001', 'M01', 2500.00, 'Durability'),
+('CP000002', 'Chasis', 'CM000001', 'M01', 1500.00, 'Reliability'),
+('CP000003', 'Frame', 'CM000002', 'M01', 2500.00, 'Durability'),
+('CP000004', 'Chasis', 'CM000002', 'M01', 1500.00, 'Reliability'),
+('CP000005', 'Frame', 'CM000003', 'M01', 2500.00, 'Durability'),
+('CP000006', 'Chasis', 'CM000003', 'M01', 1500.00, 'Reliability'),
+('CP000007', 'Frame', 'CM000004', 'M01', 2500.00, 'Durability'),
+('CP000008', 'Chasis', 'CM000004', 'M01', 1500.00, 'Reliability'),
+('CP000009', 'Frame', 'CM000005', 'M01', 2500.00, 'Durability'),
+('CP0000010', 'Chasis', 'CM000005', 'M01', 1500.00, 'Reliability');
+
+--14
+INSERT INTO PLANT_PRODUCES (PLANT_NO, CAR_MODEL_ID, START_DATE, END_DATE) 
+VALUES 
+('PN01', 'CM1', '2022-03-08', '2022-09-30'),
+('PN01', 'CM2', '2022-05-09', '2022-10-25'),
+('PN01', 'CM3', '2022-07-18', '2022-11-23'),
+('PN01', 'CM4', '2022-09-12', '2023-02-20'),
+('PN01', 'CM5', '2022-12-03', '2023-05-15'),
+
+('PN02', 'CM01', '2022-03-01', '2022-07-31'),
+('PN02', 'CM02', '2022-05-01', '2022-08-23'),
+('PN02', 'CM03', '2022-08-01', '2023-02-01'),
+('PN02', 'CM04', '2022-11-01', '2023-03-01'),
+
+('PN03', 'CM001', '2022-04-01', '2022-12-15'),
+('PN03', 'CM002', '2022-06-01', '2023-02-22'),
+('PN03', 'CM003', '2022-08-01', '2023-04-25'),
+('PN03', 'CM004', '2022-10-01', '2023-06-30'),
+('PN03', 'CM005', '2022-12-01', '2023-08-30'),
+
+('PN04', 'CM0001', '2022-04-04', '2022-12-31'),
+('PN04', 'CM0002', '2022-07-16', '2022-10-29'),
+('PN04', 'CM0003', '2022-08-21', '2023-11-21'),
+('PN04', 'CM0004', '2022-09-27', '2023-12-15'),
+('PN04', 'CM0005', '2022-11-01', '2023-12-24'),
+
+('PN01', 'CM00001', '2023-04-01', '2023-10-06'),
+('PN01', 'CM00002', '2023-06-01', '2023-12-09'),
+('PN01', 'CM00003', '2023-08-01', '2024-01-30'),
+('PN01', 'CM00004', '2023-09-01', '2024-03-19'),
+('PN01', 'CM00005', '2023-10-01', '2024-03-31'),
+
+('PN02', 'CM000001', '2023-04-27', '2023-10-29'),
+('PN02', 'CM000002', '2023-07-19', '2024-01-31'),
+('PN02', 'CM000003', '2023-09-12', NULL),
+('PN02', 'CM000004', '2023-11-24', NULL),
+('PN02', 'CM000005', '2023-12-01', NULL);
+
+
+ 
+--15
+INSERT INTO DEALER (DEALER_ID, DEALER_NAME, DEALS_WITH_M_ID, CONTACT_NO, EMAIL_ID, COUNTRY, STATE, CITY) 
+VALUES 
+('D001', 'Surya Motors', 'M01', 9876543210, 'surya_motors@example.com', 'India', 'Maharashtra', 'Mumbai'),
+('D002', 'Shree Automobiles', 'M01', 8765432109, 'shree_auto@example.com', 'India', 'Gujarat', 'Ahmedabad'),
+('D003', 'Pragati Motors', 'M01', 7654321098, 'pragati_motors@example.com', 'India', 'Tamil Nadu', 'Chennai'),
+('D004', 'Royal Cars', 'M01', 6543210987, 'royal_cars@example.com', 'India', 'Uttar Pradesh', 'Lucknow'),
+('D005', 'Nirvana Motors', 'M01', 5432109876, 'nirvana_motors@example.com', 'India', 'Delhi', 'New Delhi');
+ 
+
+--16
+INSERT INTO DEALER_ORDER_FOR (DEALER_ID, CAR_MODEL_ID, ORDERING_DATE, RECEIVING_DATE, TAX_NAME, TAX_IN_PERCENTAGE, TOTAL_AMOUNT) 
+VALUES 
+('D001', 'CM1', '2022-10-15', '2022-10-30', 'GST', 18.00,540350.00),
+('D002', 'CM01', '2022-08-05', '2022-08-10', 'GST', 18.00, 740890.00),
+('D003', 'CM001', '2022-12-26', '2022-12-30', 'GST', 18.00, 630870.00),
+('D004', 'CM02', '2022-09-05', '2022-09-15', 'GST', 18.00, 770400.00),
+('D005', 'CM3', '2022-04-20', '2022-08-10', 'GST', 18.00,540350.00),
+('D005', 'CM000001', '2023-11-10', '2023-11-25', 'GST', 18.00,910300.00),
+
+('D001', 'CM2','2022-11-05', '2022-11-15', 'GST', 18.00,540350.00),
+('D002', 'CM0001', '2023-01-04', '2023-01-10', 'GST', 18.00,638310.00),
+('D003', 'CM002', '2023-02-28', '2023-03-04', 'GST', 18.00,630870.00),
+('D004', 'CM0002', '2022-11-05', '2022-11-10', 'GST', 18.00,638310.00),
+('D005', 'CM00002', '2024-01-01', '2024-01-09', 'GST', 18.00,770900.00),
+('D005', 'CM000002', '2024-02-10', '2024-02-15', 'GST', 18.00,910300.00),
+
+('D001', 'CM00001', '2023-10-15', '2023-10-20', 'GST', 18.00, 770900.00),
+('D002', 'CM03', '2023-02-12', '2023-02-15', 'GST', 18.00,740890.00),
+('D003', 'CM4', '2023-02-25', '2023-02-28', 'GST', 18.00,560400.00),
+('D004', 'CM00003', '2024-02-10', '2024-02-15', 'GST', 18.00,743400.00),
+  
+('D001', 'CM0003', '2023-11-30', '2024-12-03', 'GST', 18.00,657400.00),
+('D002', 'CM04', '2023-03-15', '2023-03-20', 'GST', 18.00,740890.00),
+('D003', 'CM004', '2023-07-01', '2023-07-05', 'GST', 18.00,630870.00),
+('D004', 'CM0004', '2024-01-02', '2024-01-05', 'GST', 18.00,638310.00),
+
+('D001', 'CM5', '2023-05-17', '2023-05-20', 'GST', 18.00,540350.00),
+('D002', 'CM005', '2023-09-03', '2023-09-10', 'GST', 18.00,630870.00),
+('D003', 'CM0005', '2024-01-05', '2024-01-10', 'GST', 18.00,638310.00),
+('D004', 'CM00004', '2024-03-25', '2024-03-30', 'GST', 18.00, 743400.00);
+
+--17
+INSERT INTO TEST (TEST_NAME) 
+VALUES 
+('Road Test'),
+('Quality Test'),
+('Dyno Test'),
+('Endurance Test');
+
+--18
+INSERT INTO CAR_TEST (TEST_NAME, CAR_MODEL_ID, RESULT) 
+VALUES 
+('Road Test', 'CM1', 'Y'),
+('Quality Test', 'CM1', 'Y'),
+('Dyno Test', 'CM1', 'Y'),
+('Endurance Test', 'CM1', 'Y'),
+('Road Test', 'CM2', 'Y'),
+('Quality Test', 'CM2', 'Y'),
+('Dyno Test', 'CM2', 'Y'),
+('Endurance Test', 'CM2', 'Y'),
+('Road Test', 'CM3', 'Y'),
+('Quality Test', 'CM3', 'Y'),
+('Dyno Test', 'CM3', 'Y'),
+('Endurance Test', 'CM3', 'Y'),
+('Road Test', 'CM4', 'Y'),
+('Quality Test', 'CM4', 'Y'),
+('Dyno Test', 'CM4', 'Y'),
+('Endurance Test', 'CM4', 'Y'),
+('Road Test', 'CM5', 'Y'),
+('Quality Test', 'CM5', 'Y'),
+('Dyno Test', 'CM5', 'Y'),
+('Endurance Test', 'CM5', 'Y'),
+
+('Road Test', 'CM01', 'Y'),
+('Quality Test', 'CM01', 'Y'),
+('Dyno Test', 'CM01', 'Y'),
+('Endurance Test', 'CM01', 'Y'),
+('Road Test', 'CM02', 'Y'),
+('Quality Test', 'CM02', 'Y'),
+('Dyno Test', 'CM02', 'Y'),
+('Endurance Test', 'CM02', 'Y'),
+('Road Test', 'CM03', 'Y'),
+('Quality Test', 'CM03', 'Y'),
+('Dyno Test', 'CM03', 'Y'),
+('Endurance Test', 'CM03', 'Y'),
+('Road Test', 'CM04', 'Y'),
+('Quality Test', 'CM04', 'Y'),
+('Dyno Test', 'CM04', 'Y'),
+('Endurance Test', 'CM04', 'Y'),
+
+('Road Test', 'CM001', 'Y'),
+('Quality Test', 'CM001', 'Y'),
+('Dyno Test', 'CM001', 'Y'),
+('Endurance Test', 'CM001', 'Y'),
+('Road Test', 'CM002', 'Y'),
+('Quality Test', 'CM002', 'Y'),
+('Dyno Test', 'CM002', 'Y'),
+('Endurance Test', 'CM002', 'Y'),
+('Road Test', 'CM003', 'Y'),
+('Quality Test', 'CM003', 'N'),
+('Dyno Test', 'CM003', 'Y'),
+('Endurance Test', 'CM003', 'Y'),
+('Road Test', 'CM004', 'Y'),
+('Quality Test', 'CM004', 'Y'),
+('Dyno Test', 'CM004', 'Y'),
+('Endurance Test', 'CM004', 'Y'),
+('Road Test', 'CM005', 'Y'),
+('Quality Test', 'CM005', 'Y'),
+('Dyno Test', 'CM005', 'Y'),
+('Endurance Test', 'CM005', 'Y'),
+
+('Road Test', 'CM0001', 'Y'),
+('Quality Test', 'CM0001', 'Y'),
+('Dyno Test', 'CM0001', 'Y'),
+('Endurance Test', 'CM0001', 'Y'),
+('Road Test', 'CM0002', 'Y'),
+('Quality Test', 'CM0002', 'Y'),
+('Dyno Test', 'CM0002', 'Y'),
+('Endurance Test', 'CM0002', 'Y'),
+('Road Test', 'CM0003', 'Y'),
+('Quality Test', 'CM0003', 'Y'),
+('Dyno Test', 'CM0003', 'Y'),
+('Endurance Test', 'CM0003', 'Y'),
+('Road Test', 'CM0004', 'Y'),
+('Quality Test', 'CM0004', 'Y'),
+('Dyno Test', 'CM0004', 'Y'),
+('Endurance Test', 'CM0004', 'Y'),
+('Road Test', 'CM0005', 'Y'),
+('Quality Test', 'CM0005', 'Y'),
+('Dyno Test', 'CM0005', 'Y'),
+('Endurance Test', 'CM0005', 'Y'),
+
+('Road Test', 'CM00001', 'Y'),
+('Quality Test', 'CM00001', 'Y'),
+('Dyno Test', 'CM00001', 'Y'),
+('Endurance Test', 'CM00001', 'Y'),
+('Road Test', 'CM00002', 'Y'),
+('Quality Test', 'CM00002', 'Y'),
+('Dyno Test', 'CM00002', 'Y'),
+('Endurance Test', 'CM00002', 'Y'),
+('Road Test', 'CM00003', 'Y'),
+('Quality Test', 'CM00003', 'Y'),
+('Dyno Test', 'CM00003', 'Y'),
+('Endurance Test', 'CM00003', 'Y'),
+('Road Test', 'CM00004', 'Y'),
+('Quality Test', 'CM00004', 'Y'),
+('Dyno Test', 'CM00004', 'Y'),
+('Endurance Test', 'CM00004', 'Y'),
+('Road Test', 'CM00005', 'Y'),
+('Quality Test', 'CM00005', 'Y'),
+('Dyno Test', 'CM00005', 'Y'),
+('Endurance Test', 'CM00005', 'N'),
+
+('Road Test', 'CM000001', 'Y'),
+('Quality Test', 'CM000001', 'Y'),
+('Dyno Test', 'CM000001', 'Y'),
+('Endurance Test', 'CM000001', 'Y'),
+('Road Test', 'CM000002', 'Y'),
+('Quality Test', 'CM000002', 'Y'),
+('Dyno Test', 'CM000002', 'Y'),
+('Endurance Test', 'CM000002', 'Y'),
+('Road Test', 'CM000003', 'Y'),
+('Quality Test', 'CM000003', 'Y'),
+('Dyno Test', 'CM000003', 'Y'),
+('Endurance Test', 'CM000003', 'Y'),
+('Road Test', 'CM000004', 'Y'),
+('Quality Test', 'CM000004', 'Y'),
+('Dyno Test', 'CM000004', 'Y'),
+('Endurance Test', 'CM000004', 'Y'),
+('Road Test', 'CM000005', 'Y'),
+('Quality Test', 'CM000005', 'Y'),
+('Dyno Test', 'CM000005', 'Y'),
+('Endurance Test', 'CM000005', 'Y');
+
+--19
+INSERT INTO CUSTOMER (CUSTOMER_ID, CUSTOMER_NAME, CONTACT_NO, EMAIL_ID, COUNTRY, STATE, CITY) 
+VALUES 
+('C001', 'Ravi Patel', '8834567890', 'ravi@gmail.com', 'India', 'Maharashtra', 'Mumbai'),
+('C002', 'Sneha Desai', '7345678901', 'sneha@gmail.com', 'India', 'Gujarat', 'Ahmedabad'),
+('C003', 'Arun Kumar', '8456789012', 'arun@gmail.com', 'India', 'Tamil Nadu', 'Chennai'),
+('C004', 'Priya Gupta', '9567890123', 'priya@yahoo.com', 'India', 'Uttar Pradesh', 'Lucknow'),
+('C005', 'Rahul Sharma', '5678901234', 'rahul@gmail.com', 'India', 'Delhi', 'New Delhi'),
+('C006', 'Neha Singh', '6789012345', 'neha@yahoo.com', 'India', 'Karnataka', 'Bangalore'),
+('C007', 'Vijay Reddy', '7890123456', 'vijay@gmail.com', 'India', 'Andhra Pradesh', 'Hyderabad'),
+('C008', 'Deepika Kumar', '8901234567', 'deepika@gmail.com', 'India', 'Telangana', 'Secunderabad'),
+('C009', 'Nishtha Patel', '7676145678', 'nishtha@gmail.com', 'India', 'Meghalaya', 'Shillong'),
+('C010', 'Nipurna Patel', '6363245678', 'nipurna@gmail.com', 'India', 'Mizoram', 'Aizawl'),
+('C011', 'Harshali Dharmik', '7600045678', 'harshali@gmail.com', 'India', 'Rajasthan', 'Jaipur'),
+('C012', 'Ridhhi Mistry', '9675345678', 'riddhi@gmail.com', 'India', 'Sikkim', 'Gangtok'),
+('C013', 'PM Jat', '9012345678', 'pmj@yahoo.com', 'India', 'Gujarat', 'Gandhinagar'),
+('C014', 'PM Jat', '8888888889', 'pmj2@gmail.com', 'India', 'Goa', 'Panaji'),
+('C015', 'Anjali Kaur', '9999996789', 'anjali@yahoo.com', 'India', 'Punjab', 'Amritsar');
+
+
+--20
+INSERT INTO RTO (REGISTRATION_NO, ENGINE_NO, REGISTRATION_DATE, VIN, TOTAL_REG_AMOUNT, ROAD_TAX_AMOUNT) 
+VALUES 
+('MH02BC1234', 'ENG123456789', '2022-11-20', 'VIN123456789', 15000.00, 2000.00),
+('GJ02BC1234', 'ENG987654321', '2022-12-18', 'VIN987654321', 18000.00, 2500.00),
+('TN02BC1234', 'ENG456789123', '2023-12-30', 'VIN456789123', 17000.00, 2200.00),
+('UP05DE5678', 'ENG654321789', '2023-02-18', 'VIN654321789', 16000.00, 2300.00),
+('DL05DE5678', 'ENG321987654', '2023-03-20', 'VIN321987654', 19000.00, 2700.00),
+('KA05DE5678', 'ENG789123456', '2023-03-25', 'VIN789123456', 16000.00, 2100.00),
+('AP07FG9012', 'ENG234567891', '2023-01-28', 'VIN234567891', 17500.00, 2400.00),
+('TL07FG9012', 'ENG543216789', '2023-04-03', 'VIN543216789', 16500.00, 2500.00),
+('MG07FG9012', 'ENG678912345', '2023-04-15', 'VIN678912345', 18000.00, 2600.00),
+('MZ07FG9012', 'ENG891234567', '2023-08-30', 'VIN891234567', 17000.00, 2300.00),
+('RJ03HI3456', 'ENG345678912', '2022-11-08', 'VIN345678912', 18500.00, 2700.00),
+('SK03HI3456', 'ENG789123456', '2023-04-02', 'VIN789123456', 17500.00, 2200.00),
+('GJ03HI3456', 'ENG456789123', '2024-03-25', 'VIN456789123', 16500.00, 2300.00),
+('GO09JK7890', 'ENG567891234', '2022-07-05', 'VIN567891234', 19000.00, 2500.00),
+('PJ09JK7890', 'ENG234567891', '2023-12-15', 'VIN234567891', 17000.00, 2400.00); 
+
+--21
+INSERT INTO SELLS_TO (DEALER_ID, CUSTOMER_ID, CAR_MODEL_ID, REGISTRATION_NO, SELLING_DATE, CAR_AMOUNT, TAX_NAME, TAX_IN_PERCENTAGE, DISCOUNT_AMOUNT) 
+VALUES 
+('D001', 'C001', 'CM1', 'MH02BC1234', '2022-11-15', 2200000.00, 'GST', 18.00, 25000.00),
+('D001', 'C002', 'CM2', 'GJ02BC1234', '2022-12-13', 2200000.00, 'GST', 18.00, 30000.00),
+('D001', 'C003', 'CM00001', 'TN02BC1234', '2023-12-25', 2580000.00, 'GST', 18.00, 25000.00),
+
+('D002', 'C004', 'CM01', 'UP05DE5678','2023-02-10', 2300000.00, 'GST', 18.00, 0.00),
+('D002', 'C005', 'CM0001', 'DL05DE5678', '2023-03-10', 2300000.00, 'GST', 18.00, 0.00),
+('D002', 'C006', 'CM03', 'KA05DE5678', '2023-03-14', 2300000.00, 'GST', 18.00, 0.00),
+
+('D003', 'C007', 'CM001', 'AP07FG9012', '2023-01-15', 2250000.00, 'GST', 18.00, 0.00),
+('D003', 'C008', 'CM002', 'TL07FG9012', '2023-03-25', 2250000.00, 'GST', 18.00, 0.00),
+('D003', 'C009', 'CM4', 'MG07FG9012', '2023-04-02', 2250000.00, 'GST', 18.00, 0.00),
+('D003', 'C010', 'CM004', 'MZ07FG9012', '2023-08-23', 2250000.00, 'GST', 18.00, 15000.00),
+
+('D004', 'C011', 'CM02', 'RJ03HI3456', '2022-10-28', 2370000.00, 'GST', 18.00, 0.00),
+('D004', 'C012', 'CM0002', 'SK03HI3456', '2023-03-24', 2300000.00, 'GST', 18.00, 23500),
+('D004', 'C013', 'CM00003', 'GJ03HI3456', '2024-03-12', 2500000.00, 'GST', 18.00, 0.00),
+
+('D005', 'C014', 'CM3', 'GO09JK7890', '2022-06-27', 2200000.00, 'GST', 18.00, 47000),
+('D005', 'C015', 'CM000001', 'PJ09JK7890', '2023-12-03', 2670000.00, 'GST', 18.00, 0.00);
+
+--22
+INSERT INTO INSURANCE (IN_POLICY_NO, COMPANY_NAME, CUSTOMER_ID, DEALER_ID, CAR_MODEL_ID, START_DATE, END_DATE, COVERAGE_AMOUNT, INSURANCE_AMOUNT) 
+VALUES 
+('POL001', 'ABC Insurance', 'C001', 'D001', 'CM1', '2022-11-15', '2023-11-15', 2500000.00, 5000.00),
+('POL002', 'XYZ Insurance', 'C002', 'D001', 'CM2', '2022-12-13', '2023-12-13', 2500000.00, 5000.00),
+('POL003', 'PQR Insurance', 'C003', 'D001', 'CM00001', '2023-12-25', '2024-12-25', 2500000.00, 5000.00),
+
+('POL004', 'DEF Insurance', 'C004', 'D002', 'CM01', '2023-02-10', '2024-02-10', 2200000.00, 4500.00),
+('POL005', 'LMN Insurance', 'C005', 'D002', 'CM0001', '2023-03-10', '2024-03-10', 2200000.00, 4500.00),
+('POL006', 'STU Insurance', 'C006', 'D002', 'CM03', '2023-03-14', '2024-03-14', 2200000.00, 4500.00),
+
+('POL007', 'GHI Insurance', 'C007', 'D003', 'CM001', '2023-01-15', '2024-01-15', 2000000.00, 4000.00),
+('POL008', 'JKL Insurance', 'C008', 'D003', 'CM002', '2023-03-25', '2024-03-25', 2000000.00, 4000.00),
+('POL009', 'MNO Insurance', 'C009', 'D003', 'CM4', '2023-04-02', '2024-04-02', 2000000.00, 4000.00),
+('POL010', 'UVW Insurance', 'C010', 'D003', 'CM004', '2023-08-01', '2024-08-01', 2000000.00, 4000.00),
+
+('POL011', 'RST Insurance', 'C011', 'D004', 'CM02', '2022-10-28', '2023-10-28', 2300000.00, 4600.00),
+('POL012', 'EFG Insurance', 'C012', 'D004', 'CM0002', '2023-03-24', '2024-03-24', 2300000.00, 4600.00),
+('POL013', 'WXY Insurance', 'C013', 'D004', 'CM00003', '2024-03-12', '2025-03-12', 2300000.00, 4600.00),
+
+('POL014', 'BCD Insurance', 'C014', 'D005', 'CM3', '2022-06-27', '2023-06-27', 2400000.00, 4800.00),
+('POL015', 'NOP Insurance', 'C015', 'D005', 'CM000001', '2023-12-03', '2024-12-03', 2400000.00, 4800.00);
